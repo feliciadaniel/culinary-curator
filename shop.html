@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culinary Curator</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link rel="shortcut icon" href="images/balanced-diet.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="header">
+        <div class="logo">
+            <a href="#"><img src="images/balanced-diet.png" class="img-fluid" alt=""> <h4>Culinary Curator</h4></a>
+        </div>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a class="active" href="shop.html">Generate Recipes</a></li>
+                <li><a href="about.html">Meal Plan</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="page-header">
+        <h2>Create with What You Have</h2>
+        <p>Recipes Based on Your Pantry Staples</p>
+    </section>
+
+    <section id="recipe-generator" class="section-p1">
+        <div class="container">
+            <!-- Input Section -->
+            <div class="input-section">
+                <h2>Enter Ingredients</h2>
+                <textarea id="ingredientsInput" class="input-field" rows="8" placeholder="Enter ingredients separated by commas"></textarea>
+                <button class="generate-button" onclick="generateRecipe()">Generate Recipe</button>
+            </div>
+            
+            <!-- Output Section -->
+            <div class="output-section">
+                <h2>Generated Recipe</h2>
+                <div id="recipeOutput" class="recipe-output">Your recipe will appear here...</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="newsletter" class="section-p1 section-m1">
+        <div class="newstext">
+            <h4>Sign up for Newsletters</h4>
+            <p>Get Email updates about our new products and discounts!!</p>
+        </div>
+        <div class="form">
+            <input type="text" placeholder="Your Email address">
+            <button class="normal" onclick="window.location.href='login.html';">Sign Up</button>
+        </div>
+    </section>
+
+    <footer class="section-p1">
+        <div class="col">
+            <div class="logo">
+                <a href="#"><img src="images/balanced-diet.png" class="img-fluid" alt=""> <h4>Culinary Curator</h4></a>
+            </div>
+            <h4>Contact</h4>
+            <p><strong>Address:</strong>562 wellington road,Street Road,street32,San Fransico</p>
+            <p><strong>Phone:</strong>1234567890</p>
+            <p><strong>Hours:</strong>10:00 - 18:00,Mon-Sat</p>
+        </div>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#"onclick="window.location.href='login.html';">Sign In</a>
+            <a href="#">Help</a>
+        </div>
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img src="images/pay/app.jpg" alt="">
+                <img src="images/pay/play.jpg" alt="">
+            </div>
+        </div>
+
+    </footer>
+
+    <script>
+        async function generateRecipe() {
+            const ingredientsInput = document.getElementById('ingredientsInput').value;
+            
+            try {
+                const response = await fetch('http://127.0.0.1:5000/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ ingredients: ingredientsInput }),
+                });
+    
+                if (response.ok) {
+                    const data = await response.json();
+                    const recipeText = data.recipe.join('\n');
+                    const recipeParts = parseRecipe(recipeText);
+                    displayFormattedRecipe(recipeParts);
+                } else {
+                    document.getElementById('recipeOutput').innerHTML = '<p class="error-message">Error generating recipe.</p>';
+                }
+            } catch (error) {
+                document.getElementById('recipeOutput').innerHTML = '<p class="error-message">Failed to connect to the recipe service.</p>';
+            }
+        }
+    
+        function parseRecipe(recipeText) {
+            const parts = {};
+            
+            // Extract title
+            const titleMatch = recipeText.match(/title:\s*(.*?)\s*ingredients:/i);
+            if (titleMatch) parts.title = titleMatch[1].trim();
+    
+            // Extract ingredients
+            const ingredientsMatch = recipeText.match(/ingredients:\s*(.*?)\s*directions:/i);
+            if (ingredientsMatch) {
+                parts.ingredients = ingredientsMatch[1]
+                    .split('--')
+                    .map(item => item.trim())
+                    .filter(item => item);
+            }
+    
+            // Extract directions
+            const directionsMatch = recipeText.match(/directions:\s*(.*?)$/i);
+            if (directionsMatch) {
+                parts.directions = directionsMatch[1]
+                    .split('--')
+                    .map(item => item.trim())
+                    .filter(item => item);
+            }
+    
+            return parts;
+        }
+    
+        function displayFormattedRecipe(recipe) {
+            const output = document.getElementById('recipeOutput');
+            let html = `
+                <div class="recipe-container">
+                    <h3 class="recipe-title">${recipe.title}</h3>
+                    
+                    <div class="recipe-section">
+                        <h4>Ingredients</h4>
+                        <ul class="ingredients-list">
+                            ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="recipe-section">
+                        <h4>Directions</h4>
+                        <ol class="directions-list">
+                            ${recipe.directions.map(step => `<li>${step}</li>`).join('')}
+                        </ol>
+                    </div>
+                </div>
+            `;
+            
+            output.innerHTML = html;
+        }
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Vie</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link rel="shortcut icon" href="images/balanced-diet.png" type="image/x-icon" >
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="header">
+        <div class="logo">
+            <a href="#"><img src="images/balanced-diet.png" class="img-fluid" alt=""> <h4>Culinary Curator</h4></a>
+        </div>
+            <div>
+                <ul id="navbar">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a  href="shop.html">Generate Recipes</a></li>
+                    <li><a href="about.html">Meal Plan</a></li>
+                    <li><a class="active"href="login.html">Login</a></li>
+                </ul>
+            </div>
+    </section>
+
+    <section id="cpage-header">
+        <h2>Login Now</h2>
+        <p>Make returning to Culinary Curator easier!!</p>  
+    </section>
+
+<section id="login">
+    <form method="post" action="https://script.google.com/macros/s/AKfycbwCCz6tAbqJKK5IWmATJrzkg1MkpWEZSPK7iFbvWeJGDVghdww8ID-yuTVq8tG9H7Lr/exec" style="border:1px solid #ccc">
+        <div class="container">
+          <p>Please fill in this form to create an account.</p>
+          <hr>
+      
+          <label for="email"><b>Email</b></label>
+          <input type="text" placeholder="Enter Email" name="email" required>
+      
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="psw" required>
+      
+          <label for="psw-repeat"><b>Repeat Password</b></label>
+          <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+      
+          <label>
+            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+          </label>
+      
+          <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+      
+          <div class="clearfix">
+            <button type="button" class="cancelbtn">Cancel</button>
+            <button type="submit" class="signupbtn">Sign Up</button>
+          </div>
+        </div>
+      </form>
+
+</section>
+
+    <section id="newsletter" class="section-p1 section-m1">
+        <div class="newstext">
+            <h4>Sign up for Newsletters</h4>
+            <p>Get Email updates about our new products and discounts!!</p>
+        </div>
+        <div class="form">
+            <input type="text" placeholder="Your Email address">
+            <button class="normal" onclick="window.location.href='login.html';">Sign Up</button>
+        </div>
+    </section>
+
+    <footer class="section-p1">
+        <div class="col">
+            <div class="logo">
+                <a href="#"><img src="images/balanced-diet.png" class="img-fluid" alt=""> <h4>Culinary Curator</h4></a>
+            </div>
+            <h4>Contact</h4>
+            <p><strong>Address:</strong>562 wellington road,Street Road,street32,San Fransico</p>
+            <p><strong>Phone:</strong>1234567890</p>
+            <p><strong>Hours:</strong>10:00 - 18:00,Mon-Sat</p>
+        </div>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#"onclick="window.location.href='login.html';">Sign In</a>
+            <a href="#">Help</a>
+        </div>
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img src="images/pay/app.jpg" alt="">
+                <img src="images/pay/play.jpg" alt="">
+            </div>
+        </div>
+
+    </footer>
+    
+
+    <script src="script.js"></script>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxkgWotCMyvIKoT9aGtPCndZdHtHrq8i972t9CKAVjO6xC7T0I/exec'
+        const form = document.forms['google-sheet']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+     
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culinary Curator</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link rel="shortcut icon" href="images/balanced-diet.png" type="image/x-icon" >
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="header">
+        <div class="logo">
+            <a href="#"><img src="images/balanced-diet.png" class="img-fluid" alt=""> <h4>Culinary Curator</h4></a>
+        </div>
+            <div>
+                <ul id="navbar">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a  href="shop.html">Generate Recipes</a></li>
+                    <li><a class="active" href="about.html">Meal Plan</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+    </section>
+
+    <section id="page-header" class="about-header">
+        <h2>Elevate Your Eating</h2>
+        <p>Personalized Plans for Every Palate!</p>  
+    </section>
+
+    <!-- New Section for Meal Planning Form -->
+    <section id="meal-planning" class="meal-planning">
+        <div class="meal-planning-centered">
+            <form id="meal-form" class="meal-form">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required>
+    
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+    
+                <label for="weekly_calorie_goal">Weekly Calorie Goal:</label>
+                <input type="number" id="weekly_calorie_goal" name="weekly_calorie_goal" required>
+    
+                <label for="allergies">Allergies (comma-separated):</label>
+                <input type="text" id="allergies" name="allergies">
+    
+                <label>Diet Type:</label>
+                <div>
+                    <label><input type="radio" name="diet_type" value="Vegetarian" required> Vegetarian</label>
+                    <label><input type="radio" name="diet_type" value="Vegan"> Vegan</label>
+                    <label><input type="radio" name="diet_type" value="Paleo"> Paleo</label>
+                    <label><input type="radio" name="diet_type" value="Keto"> Keto</label>
+                    <label><input type="radio" name="diet_type" value="Non-vegetarian"> Non - Vegetarian</label>
+                </div>
+    
+                <label for="meal_type">Meal Type (comma-separated):</label>
+                <input type="text" id="meal_type" name="meal_type" required>
+    
+                <label for="meal_quantity">Meals Per Day:</label>
+                <input type="number" id="meal_quantity" name="meal_quantity" required>
+    
+                <label>Cuisine Preferences:</label>
+                <div>
+                    <label><input type="checkbox" name="cuisine_preferences" value="Italian"> Italian</label>
+                    <label><input type="checkbox" name="cuisine_preferences" value="Mexican"> Mexican</label>
+                    <label><input type="checkbox" name="cuisine_preferences" value="Indian"> Indian</label>
+                    <label><input type="checkbox" name="cuisine_preferences" value="Chinese"> Chinese</label>
+                    <label><input type="checkbox" name="cuisine_preferences" value="Mediterranean"> Mediterranean</label>
+                </div>
+    
+                <label for="preferred_ingredients">Preferred Ingredients (comma-separated):</label>
+                <input type="text" id="preferred_ingredients" name="preferred_ingredients">
+    
+                <label for="avoided_ingredients">Avoided Ingredients (comma-separated):</label>
+                <input type="text" id="avoided_ingredients" name="avoided_ingredients">
+    
+                <label for="cooking_skill_level">Cooking Skill Level:</label>
+                <select id="cooking_skill_level" name="cooking_skill_level" required>
+                    <option value="" disabled selected>Select your skill level</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+    
+                <label for="cooking_time">Max Cooking Time (minutes):</label>
+                <input type="number" id="cooking_time" name="cooking_time" required>
+    
+                <label for="difficulty_level">Difficulty Level:</label>
+                <select id="difficulty_level" name="difficulty_level" required>
+                    <option value="" disabled selected>Select difficulty level</option>
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
+                </select>
+    
+                <label for="days_in_plan">Days in Plan:</label>
+                <input type="number" id="days_in_plan" name="days_in_plan" required>
+    
+                <label for="budget_constraints">Budget Constraints:</label>
+                <input type="text" id="budget_constraints" name="budget_constraints" required>
+    
+                <button type="submit" class="normal">Generate Meal Plan</button>
+            </form>
+        </div>
+        <div id="meal-plan-output" class="meal-plan-output" style="white-space: pre-wrap;"></div>
+    </section>
+    
+    <section id="newsletter" class="section-p1 section-m1">
+        <div class="newstext">
+            <h4>Sign up for Newsletters</h4>
+            <p>Get Email updates about our new products and discounts!!</p>
+        </div>
+        <div class="form">
+            <input type="text" placeholder="Your Email address">
+            <button class="normal" onclick="window.location.href='login.html';">Sign Up</button>
+        </div>
+    </section>
+
+    <footer class="section-p1">
+        <div class="col">
+            <div class="logo">
+                <a href="#"><img src="images/balanced-diet.png" class="img-fluid" alt=""> <h4>Culinary Curator</h4></a>
+            </div>
+            <h4>Contact</h4>
+            <p><strong>Address:</strong>562 wellington road,Street Road,street32,San Fransico</p>
+            <p><strong>Phone:</strong>1234567890</p>
+            <p><strong>Hours:</strong>10:00 - 18:00,Mon-Sat</p>
+        </div>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#"onclick="window.location.href='login.html';">Sign In</a>
+            <a href="#">Help</a>
+        </div>
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img src="images/pay/app.jpg" alt="">
+                <img src="images/pay/play.jpg" alt="">
+            </div>
+        </div>
+
+    </footer>
+    <script>
+        document.getElementById("meal-form").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+    
+            try {
+                const response = await fetch('http://127.0.0.1:5000/meal-plan', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+    
+                if (response.ok) {
+                    const mealPlanResponse = await response.json();
+                    document.getElementById("meal-plan-output").innerText = mealPlanResponse.meal_plan; // Display meal plan
+                } else {
+                    const errorData = await response.json();
+                    alert(`Error generating meal plan: ${errorData.message || 'Unknown error occurred.'}`);
+                }
+            } catch (error) {
+                alert('Failed to connect to the meal planning service. Please try again later.');
+            }
+        });
+    </script>
+    
+    
+    <script src="script.js"></script>
+</body>
+</html>
